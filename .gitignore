@@ -1,4 +1,4 @@
 dbt_piperider_env/
 logs/
 set_env_var.sh
-dbt_piperider/.user.yml
+.user.yml
