@@ -1,0 +1,24 @@
+dbt_piperider:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}"
+
+      # User/password auth
+      user: "{{ env_var('DBT_SNOWFLAKE_USER') }}"
+      password: "{{ env_var('DBT_SNOWFLAKE_PW') }}"
+
+      role: accountadmin
+      database: analytics_credit_debit_transaction
+      warehouse: transforming
+      schema: marts
+      threads: 1
+      client_session_keep_alive: False
+      # query_tag: github_action_query
+
+      # optional
+      connect_retries: 0 # default 0
+      connect_timeout: 10 # default: 10
+      retry_on_database_errors: False # default: false 
+      retry_all: False  # default: false
