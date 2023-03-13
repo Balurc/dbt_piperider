@@ -1,0 +1,15 @@
+version: 2
+
+models:
+    - name: dim_accounts
+      description: Customers' account dimension. Contain customer bank account information.
+    - name: dim_customers
+      description: Customers' dimension. Contain customer demographic information.
+    - name: dim_dates
+      description: Date dimension.
+    - name: dim_merchants
+      description: Merchants' dimension. Contain merchants' information.
+    - name: dim_transactions
+      description: Transaction dimension. Contain customers' transaction type and purpose.
+    - name: fct_transactions
+      description: Fact transactions. Contain customers' detail transactions and amount.

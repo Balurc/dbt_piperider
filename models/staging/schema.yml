@@ -1,0 +1,95 @@
+version: 2
+
+sources:
+    - name: raw
+      database: raw_credit_debit_transaction
+      schema: public_listing
+
+      tables:
+          - name: transactions
+
+models:
+    - name: stg_accounts
+      description: Contains customer bank account information.
+      columns:
+          - name: account_id
+            description: Costumer bank account identifier.
+          - name: bank_name 
+            description: The costumer's bank for executing his/her transactions.
+          - name: account_type
+            description: Type of the account type, such as current, savings, etc.
+          - name: account_created_date 
+            description: The date when the account first created.
+          - name: account_last_refreshed 
+            description: The date of when the account last updated.
+
+    - name: stg_customers
+      description: Contains customer demographic information.
+      columns:
+          - name: customer_id
+            description: Customer identifier
+          - name: age_band 
+            description: The costumer age range.
+          - name: salary_band
+            description: The costumer salary range.
+          - name: postcode 
+            description: The postcode of where the costumer lives.
+          - name: LSOA 
+            description: Geographical hierarchy, Small areas that has similar population size (average of approximately 1,500 residents or 650 households).
+          - name: MSOA 
+            description: Geographical hierarchy, Medium areas where the minimum population size is 5000 (average of 7200).
+          - name: gender 
+            description: Costumer gender identity.
+
+    - name: stg_merchants
+      description: Contains merchants' information.
+      columns:
+          - name: merchant_name
+            description: Merchant's name.
+          - name: merchant_business_line 
+            description: Merchant's business category.
+
+    - name: stg_transactions
+      description: Contains customers' transaction type and purpose.
+      columns:
+          - name: transaction_id
+            description: The transaction identifier for each transaction made by costumer.
+          - name: transaction_type 
+            description: Type of transaction made by costumer, debit or credit.
+          - name: transaction_purpose 
+            description: The transaction purpose.
+
+    - name: stg_dates
+      description: Contains date dimensions.
+      columns:
+          - name: transaction_date
+            description: Transaction date.
+          - name: day_of_month 
+            description: Transaction day number in the relevant month.
+          - name: day_name 
+            description: Transaction day name.
+          - name: month_of_year 
+            description: Transaction month number in the relevant year.
+          - name: month_name 
+            description: Transaction month name.
+          - name: year 
+            description: Transaction year.
+
+    - name: stg_transaction_data
+      description: Contains detail data on transaction.
+      columns:
+          - name: transaction_date
+            description: Transaction date.
+          - name: transaction_id 
+            description: The transaction identifier for each transaction made by costumer.
+          - name: customer_id 
+            description: Customer identifier.
+          - name: account_id 
+            description: Costumer bank account identifier.
+          - name: merchant_name 
+            description: Merchant's name.
+          - name: merchant_business_line 
+            description: Merchant's business category.
+          - name: amount 
+            description: Transaction amount.
+      

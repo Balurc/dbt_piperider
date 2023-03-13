@@ -12,7 +12,7 @@ dbt_piperider:
       role: accountadmin
       database: analytics_credit_debit_transaction
       warehouse: transforming
-      schema: marts
+      schema: analytics
       threads: 1
       client_session_keep_alive: False
       # query_tag: github_action_query
