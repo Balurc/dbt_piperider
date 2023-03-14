@@ -7,6 +7,7 @@
     
     
 md5(cast(coalesce(cast(transaction_date as TEXT), '_dbt_utils_surrogate_key_null_') as TEXT)) AS date_key,
+    transaction_date,
     
     
 md5(cast(coalesce(cast(transaction_id as TEXT), '_dbt_utils_surrogate_key_null_') as TEXT)) AS transaction_key,
