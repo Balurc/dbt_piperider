@@ -1,5 +1,6 @@
 SELECT
     {{ dbt_utils.generate_surrogate_key(['transaction_date']) }} AS date_key,
+    transaction_date,
     {{ dbt_utils.generate_surrogate_key(['transaction_id']) }} AS transaction_key,
     {{ dbt_utils.generate_surrogate_key(['customer_id']) }} AS customer_key,
     {{ dbt_utils.generate_surrogate_key(['account_id']) }} AS account_key,
