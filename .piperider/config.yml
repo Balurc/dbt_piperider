@@ -1,0 +1,15 @@
+dataSources: []
+dbt:
+  projectDir: .
+  # tag: 'piperider'
+
+profiler:
+  table:
+    # the maximum row count to profile. (Default unlimited)
+    # limit: 1000000
+
+    # just to enable duplicate row detection, so when you profile the data it will show if you have duplicates in your data
+    duplicateRows: true
+
+telemetry:
+  id: cb8e360045d04054995767485e14aef7
