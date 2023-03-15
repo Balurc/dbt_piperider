@@ -2,7 +2,7 @@
   
     
 
-        create or replace transient table analytics_credit_debit_transaction.analytics_dev.fct_transactions  as
+        create or replace transient table analytics_credit_debit_transaction.analytics_prod.fct_transactions  as
         (SELECT
     
     
@@ -21,7 +21,7 @@ md5(cast(coalesce(cast(account_id as TEXT), '_dbt_utils_surrogate_key_null_') as
     
 md5(cast(coalesce(cast(merchant_name as TEXT), '_dbt_utils_surrogate_key_null_') || '-' || coalesce(cast(merchant_business_line as TEXT), '_dbt_utils_surrogate_key_null_') as TEXT)) AS merchant_key,
     amount
-FROM analytics_credit_debit_transaction.analytics_dev.stg_transaction_data
+FROM analytics_credit_debit_transaction.analytics_prod.stg_transaction_data
         );
       
   

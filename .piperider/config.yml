@@ -1,7 +1,16 @@
-dataSources: []
-dbt:
-  projectDir: .
-  # tag: 'piperider'
+dataSources:
+- name: dbt_piperider_pr
+  type: snowflake
+  dbt:
+    profile: dbt_piperider
+    target: pr
+    projectDir: .
+- name: dbt_piperider
+  type: snowflake
+  dbt:
+    profile: dbt_piperider
+    target: prod
+    projectDir: .
 
 profiler:
   table:

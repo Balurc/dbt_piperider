@@ -38,33 +38,34 @@ jobs:
         run: |
           pip install dbt-snowflake
           pip install piperider['snowflake']
-          dbt deps
-      
-      - run: dbt --version
+          # dbt deps
+
+      # - run: dbt --version
 
       - name: Run DBT on PR environment
         run: dbt build --target pr
 
       - name: Profile on PR environment
-        run: piperider run --datasource pr --dbt-state target -o /tmp/pr-report/
+        run: piperider run --datasource dbt_piperider_pr --dbt-state target -o /tmp/pr-report/
       
-      - name: Checkout main branch
-        uses: actions/checkout@master
-        with:
-          ref: main
+      # - name: Checkout main branch
+      #   uses: actions/checkout@master
+      #   with:
+      #     ref: main
       
-      - name: Install dbt packages
-        run: dbt deps
+      # - name: Install dbt packages
+      #   run: dbt deps
 
-      - name: Run DBT on PROD environment
-        run: dbt build --target prod
+      # - name: Run DBT on PROD environment
+      #   run: dbt build --target prod
 
       - name: Profile on PROD environment
-        run: piperider run --datasource prod --dbt-state target -o /tmp/prod-report/
+        run: piperider run --datasource dbt_piperider -o /tmp/prod-report/
 
       - name: Compare reports
         run: |
           piperider compare-reports \
+            --debug \
             --base /tmp/prod-report/run.json \
             --target /tmp/pr-report/run.json \
             --output comparison-report/
