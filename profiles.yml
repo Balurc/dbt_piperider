@@ -15,15 +15,6 @@ dbt_piperider:
       schema: "{{ env_var('DBT_SNOWFLAKE_SCHEMA') }}"
       threads: 4
       
-    #   client_session_keep_alive: False
-    #   # query_tag: github_action_query
-
-    #   # optional
-    #   connect_retries: 0 # default 0
-    #   connect_timeout: 10 # default: 10
-    #   retry_on_database_errors: False # default: false 
-    #   retry_all: False  # default: false
-      
     pr:
       type: snowflake
       account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}"
@@ -37,15 +28,6 @@ dbt_piperider:
       schema: analytics_pr
       threads: 4
 
-      # client_session_keep_alive: False
-      # query_tag: github_action_query
-
-      # optional
-      # connect_retries: 0 # default 0
-      # connect_timeout: 10 # default: 10
-      # retry_on_database_errors: False # default: false 
-      # retry_all: False  # default: false
-
     prod:
       type: snowflake
       account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}"
@@ -58,12 +40,3 @@ dbt_piperider:
       warehouse: "{{ env_var('DBT_SNOWFLAKE_WAREHOUSE') }}"
       schema: analytics_prod
       threads: 4
-
-      # client_session_keep_alive: False
-      # query_tag: github_action_query
-
-      # optional
-      # connect_retries: 0 # default 0
-      # connect_timeout: 10 # default: 10
-      # retry_on_database_errors: False # default: false 
-      # retry_all: False  # default: false

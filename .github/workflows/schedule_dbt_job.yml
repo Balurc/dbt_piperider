@@ -1,7 +1,8 @@
 name: schedule_dbt_job
 
 on:
-  pull_request_target:
+  workflow_dispatch:
+  pull_request:
     types: [opened, synchronize, reopened]
     branches: ['main']
     paths:
@@ -46,7 +47,7 @@ jobs:
         run: dbt build --target pr
 
       - name: Profile on PR environment
-        run: piperider run --datasource dbt_piperider_pr --dbt-state target -o /tmp/pr-report/
+        run: piperider run --datasource pr --dbt-state target -o /tmp/piperider/pr-report/
       
       - name: Checkout main branch
         uses: actions/checkout@master
@@ -60,16 +61,24 @@ jobs:
         run: dbt build --target prod
 
       - name: Profile on PROD environment
-        run: piperider run --datasource dbt_piperider_prod --dbt-state target -o /tmp/prod-report/
+        run: piperider run --datasource prod --dbt-state target -o /tmp/piperider/prod-report/
 
       - name: Compare reports
         run: |
           piperider compare-reports \
-            --debug \
-            --base /tmp/prod-report/run.json \
-            --target /tmp/pr-report/run.json \
-            --output comparison-report/
-          zip -r comparison-report.zip comparison-report/
+            --base /tmp/piperider/prod-report/run.json \
+            --target /tmp/piperider/pr-report/run.json \
+            --output /tmp/piperider/comparison-report
+          # zip -r comparison-report.zip comparison-report/
+
+      - name: Create PR comments
+        uses: peter-evans/create-or-update-comment@v2.1.0
+        with:
+          issue-number: ${{ github.event.number }}
+          body-file: /tmp/piperider/comparison-report/summary.md
+          
+      - name: Create run artifact
+        run: zip -r comparison-report.zip /tmp/piperider/comparison-report
 
       - name: Upload profiling results
         uses: actions/upload-artifact@v3
@@ -77,16 +86,16 @@ jobs:
           name: comparison-report-artifact
           path: comparison-report.zip
 
-      - name: Prepare comparison summary
-        run: |
-          echo "# :bar_chart: Piperider Comparison Summary" > summary.md
-          cat comparison-report/summary.md >> summary.md
-          echo -e "\n" >> summary.md
-          echo "## :paperclip: Generated Comparison Report ZIP" >> summary.md
-          echo "Find it in the [Github Action Runs Page](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> summary.md
+      # - name: Prepare comparison summary
+      #   run: |
+      #     echo "# :bar_chart: Piperider Comparison Summary" > summary.md
+      #     cat comparison-report/summary.md >> summary.md
+      #     echo -e "\n" >> summary.md
+      #     echo "## :paperclip: Generated Comparison Report ZIP" >> summary.md
+      #     echo "Find it in the [Github Action Runs Page](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> summary.md
       
-      - name: Create PR comments
-        uses: peter-evans/create-or-update-comment@v2.1.0
-        with:
-          issue-number: ${{ github.event.number }}
-          body-file: summary.md
+      # - name: Create PR comments
+      #   uses: peter-evans/create-or-update-comment@v2.1.0
+      #   with:
+      #     issue-number: ${{ github.event.number }}
+      #     body-file: summary.md
