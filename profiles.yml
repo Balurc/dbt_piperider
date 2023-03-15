@@ -21,6 +21,7 @@ dbt_piperider:
       connect_timeout: 10 # default: 10
       retry_on_database_errors: False # default: false 
       retry_all: False  # default: false
+      
     pr:
       type: snowflake
       account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}"
@@ -41,6 +42,7 @@ dbt_piperider:
       connect_timeout: 10 # default: 10
       retry_on_database_errors: False # default: false 
       retry_all: False  # default: false
+
     prod:
       type: snowflake
       account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}"
