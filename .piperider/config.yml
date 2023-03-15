@@ -5,10 +5,10 @@ dataSources:
     profile: dbt_piperider
     target: pr
     projectDir: .
-- name: dbt_piperider
+- name: dbt_piperider_prod
   type: snowflake
   dbt:
-    profile: dbt_piperider_prod
+    profile: dbt_piperider
     target: prod
     projectDir: .
 

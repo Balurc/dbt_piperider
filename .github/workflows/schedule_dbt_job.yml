@@ -60,7 +60,7 @@ jobs:
         run: dbt build --target prod
 
       - name: Profile on PROD environment
-        run: piperider run --datasource dbt_piperider --dbt-state target -o /tmp/prod-report/
+        run: piperider run --datasource dbt_piperider_prod --dbt-state target -o /tmp/prod-report/
 
       - name: Compare reports
         run: |
