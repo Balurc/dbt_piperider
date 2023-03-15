@@ -35,9 +35,9 @@ models:
   dbt_piperider:
     # Config indicated by + and applies to all files under models/example/
     staging:
-      +schema: staging
+      # +schema: staging
       +materialized: view
     marts:
-      +schema: marts
+      # +schema: marts
       +materialized: table
 

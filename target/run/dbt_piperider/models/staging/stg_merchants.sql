@@ -1,5 +1,5 @@
 
-  create or replace   view analytics_credit_debit_transaction.analytics_staging.stg_merchants
+  create or replace   view analytics_credit_debit_transaction.analytics_dev.stg_merchants
   
    as (
     WITH merchants as (
