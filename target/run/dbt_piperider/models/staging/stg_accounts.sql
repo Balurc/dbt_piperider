@@ -1,5 +1,5 @@
 
-  create or replace   view analytics_credit_debit_transaction.analytics_prod.stg_accounts
+  create or replace   view analytics_credit_debit_transaction.analytics_dev.stg_accounts
   
    as (
     WITH customer_accounts AS (

@@ -8,7 +8,7 @@ dataSources:
 - name: dbt_piperider
   type: snowflake
   dbt:
-    profile: dbt_piperider
+    profile: dbt_piperider_prod
     target: prod
     projectDir: .
 

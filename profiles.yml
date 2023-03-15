@@ -1,19 +1,20 @@
 dbt_piperider:
-  # target: dev
-  target: prod
+  target: dev
+  # target: prod
   outputs:
-    # dev:
-    #   type: snowflake
-    #   account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}"
+    dev:
+      type: snowflake
+      account: "{{ env_var('DBT_SNOWFLAKE_ACCOUNT') }}"
 
-    #   # User credentials
-    #   user: "{{ env_var('DBT_SNOWFLAKE_USER') }}"
-    #   password: "{{ env_var('DBT_SNOWFLAKE_PW') }}"
-    #   role: "{{ env_var('DBT_SNOWFLAKE_ROLE') }}"
-    #   database: "{{ env_var('DBT_SNOWFLAKE_DATABASE') }}"
-    #   warehouse: "{{ env_var('DBT_SNOWFLAKE_WAREHOUSE') }}"
-    #   schema: "{{ env_var('DBT_SNOWFLAKE_SCHEMA') }}"
-    #   threads: 1
+      # User credentials
+      user: "{{ env_var('DBT_SNOWFLAKE_USER') }}"
+      password: "{{ env_var('DBT_SNOWFLAKE_PW') }}"
+      role: "{{ env_var('DBT_SNOWFLAKE_ROLE') }}"
+      database: "{{ env_var('DBT_SNOWFLAKE_DATABASE') }}"
+      warehouse: "{{ env_var('DBT_SNOWFLAKE_WAREHOUSE') }}"
+      schema: "{{ env_var('DBT_SNOWFLAKE_SCHEMA') }}"
+      threads: 4
+      
     #   client_session_keep_alive: False
     #   # query_tag: github_action_query
 
@@ -35,6 +36,7 @@ dbt_piperider:
       warehouse: "{{ env_var('DBT_SNOWFLAKE_WAREHOUSE') }}"
       schema: analytics_pr
       threads: 4
+
       # client_session_keep_alive: False
       # query_tag: github_action_query
 
@@ -56,6 +58,7 @@ dbt_piperider:
       warehouse: "{{ env_var('DBT_SNOWFLAKE_WAREHOUSE') }}"
       schema: analytics_prod
       threads: 4
+
       # client_session_keep_alive: False
       # query_tag: github_action_query
 
