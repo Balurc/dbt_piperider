@@ -13,8 +13,8 @@ models:
       description: Transaction dimension. Contain customers' transaction type and purpose.
     - name: fct_transactions
       description: Fact transactions. Contain customers' detail transactions and amount.
-    # - name: dim_merchants_revenue
-    #   description: Information on merchants' total transactions and revenue aggregated by year and month.
+    - name: dim_merchants_revenue
+      description: Information on merchants' total transactions and revenue aggregated by year and month.
 
 metrics:
   - name: amount
