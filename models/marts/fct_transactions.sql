@@ -5,5 +5,5 @@ SELECT
     {{ dbt_utils.generate_surrogate_key(['customer_id']) }} AS customer_key,
     {{ dbt_utils.generate_surrogate_key(['account_id']) }} AS account_key,
     {{ dbt_utils.generate_surrogate_key(['merchant_name','merchant_business_line']) }} AS merchant_key,
-    amount
+    amount::integer
 FROM {{ ref('stg_transaction_data') }}
