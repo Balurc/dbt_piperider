@@ -1,4 +1,93 @@
-name: schedule_dbt_job
+# name: schedule_dbt_job
+
+# on:
+#   workflow_dispatch:
+#   pull_request:
+#     types: [opened, synchronize, reopened]
+#     branches: ['main']
+#     paths:
+#       - models/**
+#       - seeds/**
+#       - tests/**
+
+# env:
+#   # DBT_PROFILES_DIR: ./
+#   DBT_SNOWFLAKE_ACCOUNT: ${{ secrets.DBT_SNOWFLAKE_ACCOUNT }}
+#   DBT_SNOWFLAKE_USER: ${{ secrets.DBT_SNOWFLAKE_USER }}
+#   DBT_SNOWFLAKE_PW: ${{ secrets.DBT_SNOWFLAKE_PW }}
+#   DBT_SNOWFLAKE_ROLE: ${{ secrets.DBT_SNOWFLAKE_ROLE }}
+#   DBT_SNOWFLAKE_DATABASE: ${{ secrets.DBT_SNOWFLAKE_DATABASE }}
+#   DBT_SNOWFLAKE_WAREHOUSE: ${{ secrets.DBT_SNOWFLAKE_WAREHOUSE }}
+#   DBT_SNOWFLAKE_SCHEMA: ${{ secrets.DBT_SNOWFLAKE_SCHEMA }}
+
+# jobs:
+#   schedule_dbt_job:
+#     name: schedule_dbt_job
+#     runs-on: ubuntu-latest
+
+#     steps:
+
+#       - name: Checkout PR branch
+#         uses: actions/checkout@master
+
+#       - name: Set up Python 3.8
+#         uses: actions/setup-python@v2
+#         with:
+#           python-version: "3.8.16"
+
+#       - name: Setup DBT + Piperider
+#         run: |
+#           pip install dbt-snowflake
+#           pip install piperider['snowflake']
+#           dbt deps
+
+#       - run: dbt --version
+
+#       - name: Run DBT on PR environment
+#         run: dbt build --target pr
+
+#       - name: Profile on PR environment
+#         run: piperider run --datasource pr --dbt-state target -o /tmp/piperider/pr-report/
+      
+#       - name: Checkout main branch
+#         uses: actions/checkout@master
+#         with:
+#           ref: main
+      
+#       - name: Install dbt packages
+#         run: dbt deps
+
+#       - name: Run DBT on PROD environment
+#         run: dbt build --target prod
+
+#       - name: Profile on PROD environment
+#         run: piperider run --datasource prod --dbt-state target -o /tmp/piperider/prod-report/
+
+#       - name: Compare reports
+#         run: |
+#           piperider compare-reports \
+#             --base /tmp/piperider/prod-report/run.json \
+#             --target /tmp/piperider/pr-report/run.json \
+#             --output /tmp/piperider/comparison-report
+#           # zip -r comparison-report.zip comparison-report/
+
+#       - name: Create PR comments
+#         uses: peter-evans/create-or-update-comment@v2.1.0
+#         with:
+#           issue-number: ${{ github.event.number }}
+#           body-file: /tmp/piperider/comparison-report/summary.md
+          
+#       - name: Create run artifact
+#         run: zip -r comparison-report.zip /tmp/piperider/comparison-report
+
+#       - name: Upload profiling results
+#         uses: actions/upload-artifact@v3
+#         with:
+#           name: comparison-report-artifact
+#           path: comparison-report.zip
+
+
+name: prod_vs_pr
 
 on:
   workflow_dispatch:
@@ -22,7 +111,7 @@ env:
 
 jobs:
   schedule_dbt_job:
-    name: schedule_dbt_job
+    name: prod_vs_pr
     runs-on: ubuntu-latest
 
     steps:
@@ -48,25 +137,14 @@ jobs:
 
       - name: Profile on PR environment
         run: piperider run --datasource pr --dbt-state target -o /tmp/piperider/pr-report/
-      
-      - name: Checkout main branch
-        uses: actions/checkout@master
-        with:
-          ref: main
-      
-      - name: Install dbt packages
-        run: dbt deps
-
-      - name: Run DBT on PROD environment
-        run: dbt build --target prod
 
       - name: Profile on PROD environment
-        run: piperider run --datasource prod --dbt-state target -o /tmp/piperider/prod-report/
+        run: piperider run --datasource dev -o /tmp/piperider/dev-report/
 
       - name: Compare reports
         run: |
           piperider compare-reports \
-            --base /tmp/piperider/prod-report/run.json \
+            --base /tmp/piperider/dev-report/run.json \
             --target /tmp/piperider/pr-report/run.json \
             --output /tmp/piperider/comparison-report
           # zip -r comparison-report.zip comparison-report/
@@ -85,17 +163,3 @@ jobs:
         with:
           name: comparison-report-artifact
           path: comparison-report.zip
-
-      # - name: Prepare comparison summary
-      #   run: |
-      #     echo "# :bar_chart: Piperider Comparison Summary" > summary.md
-      #     cat comparison-report/summary.md >> summary.md
-      #     echo -e "\n" >> summary.md
-      #     echo "## :paperclip: Generated Comparison Report ZIP" >> summary.md
-      #     echo "Find it in the [Github Action Runs Page](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> summary.md
-      
-      # - name: Create PR comments
-      #   uses: peter-evans/create-or-update-comment@v2.1.0
-      #   with:
-      #     issue-number: ${{ github.event.number }}
-      #     body-file: summary.md

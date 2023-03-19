@@ -1,4 +1,10 @@
 dataSources:
+- name: dev
+  type: snowflake
+  dbt:
+    profile: dbt_piperider
+    target: dev
+    projectDir: .
 - name: pr
   type: snowflake
   dbt:
