@@ -10,7 +10,7 @@
     MONTH(transaction_date)::VARCHAR as month_of_year,
     MONTHNAME(transaction_date) as month_name,
     YEAR(transaction_date)::VARCHAR as year
-  FROM raw_credit_debit_transaction.public_listing.transactions 
+  FROM raw_transactions.debit_credit_transactions.dc_transactions 
 )
 
 SELECT * FROM transaction_dates

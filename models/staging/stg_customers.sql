@@ -6,8 +6,8 @@ WITH customer_demographics AS (
     postcode,
     LSOA,
     MSOA,
-    derived_gender AS gender
-  FROM {{ source('raw', 'transactions') }} 
+    derived_gender
+  FROM {{ source('raw', 'dc_transactions') }} 
 )
 
 SELECT * FROM customer_demographics

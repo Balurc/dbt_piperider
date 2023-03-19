@@ -2,7 +2,7 @@ WITH merchants as (
   SELECT DISTINCT
     merchant_name,
     merchant_business_line
-  FROM raw_credit_debit_transaction.public_listing.transactions 
+  FROM raw_transactions.debit_credit_transactions.dc_transactions 
 )
 
 SELECT * FROM merchants

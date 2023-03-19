@@ -6,7 +6,7 @@ WITH transaction_dates AS (
     MONTH(transaction_date)::VARCHAR as month_of_year,
     MONTHNAME(transaction_date) as month_name,
     YEAR(transaction_date)::VARCHAR as year
-  FROM {{ source('raw', 'transactions') }} 
+  FROM {{ source('raw', 'dc_transactions') }} 
 )
 
 SELECT * FROM transaction_dates

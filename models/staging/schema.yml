@@ -2,11 +2,11 @@ version: 2
 
 sources:
     - name: raw
-      database: raw_credit_debit_transaction
-      schema: public_listing
+      database: raw_transactions
+      schema: debit_credit_transactions
 
       tables:
-          - name: transactions
+          - name: dc_transactions
 
 models:
     - name: stg_accounts

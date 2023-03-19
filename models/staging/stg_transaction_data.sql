@@ -7,7 +7,7 @@ WITH transaction_data AS (
     merchant_name, 
     merchant_business_line,
     amount::NUMBER as amount
-  FROM {{ source('raw', 'transactions') }} 
+  FROM {{ source('raw', 'dc_transactions') }} 
 )
 
 SELECT * FROM transaction_data
