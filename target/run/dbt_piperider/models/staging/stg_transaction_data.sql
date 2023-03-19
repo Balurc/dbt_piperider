@@ -10,7 +10,7 @@
     account_reference AS account_id,
     merchant_name, 
     merchant_business_line,
-    amount
+    amount::number AS amount
   FROM raw_transactions.debit_credit_transactions.dc_transactions 
 )
 
