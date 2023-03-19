@@ -140,13 +140,13 @@ jobs:
 
       - name: Profile on PROD environment
         run: |
-          dbt compile -t dev
-          piperider run --datasource dev -o /tmp/piperider/dev-report/
+          # dbt compile -t dev
+          piperider run --datasource prod -o /tmp/piperider/prod-report/
 
       - name: Compare reports
         run: |
           piperider compare-reports \
-            --base /tmp/piperider/dev-report/run.json \
+            --base /tmp/piperider/prod-report/run.json \
             --target /tmp/piperider/pr-report/run.json \
             --output /tmp/piperider/comparison-report
           # zip -r comparison-report.zip comparison-report/
