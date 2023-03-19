@@ -140,7 +140,7 @@ jobs:
 
       - name: Profile on PROD environment
         run: |
-          # dbt compile -t dev
+          dbt compile -t prod
           piperider run --datasource prod -o /tmp/piperider/prod-report/
 
       - name: Compare reports
