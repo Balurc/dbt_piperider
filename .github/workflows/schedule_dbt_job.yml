@@ -139,7 +139,9 @@ jobs:
         run: piperider run --datasource pr --dbt-state target -o /tmp/piperider/pr-report/
 
       - name: Profile on PROD environment
-        run: piperider run --datasource dev -o /tmp/piperider/dev-report/
+        run: |
+          dbt compile -t dev
+          piperider run --datasource dev -o /tmp/piperider/dev-report/
 
       - name: Compare reports
         run: |
