@@ -47,9 +47,7 @@ jobs:
         run: dbt build --target pr
 
       - name: Profile on PR environment
-        run: |
-          piperider generate-assertions
-          piperider run --datasource pr --dbt-state target -o /tmp/piperider/pr-report/
+        run: piperider run --datasource pr --dbt-state target -o /tmp/piperider/pr-report/
       
       - name: Checkout main branch
         uses: actions/checkout@master
