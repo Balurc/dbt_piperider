@@ -137,7 +137,7 @@ jobs:
 
       - name: Profile on PR environment
         run: |
-          piperider generate-assertions
+          # piperider generate-assertions
           piperider run --datasource pr --dbt-state target -o /tmp/piperider/pr-report/
 
       - name: Profile on PROD environment
