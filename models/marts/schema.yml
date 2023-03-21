@@ -16,40 +16,40 @@ models:
     - name: dim_merchants_revenue
       description: Information on merchants' total transactions and revenue aggregated by year and month.
 
-# metrics:
-#   - name: amount
-#     label: Total Spend
-#     model: ref('fct_transactions')
-#     description: "Sum of total spend"
-#     calculation_method: sum
-#     expression: amount
-#     timestamp: transaction_date
-#     time_grains: [month]
+metrics:
+  - name: amount
+    label: Total Spend
+    model: ref('fct_transactions')
+    description: "Sum of total spend"
+    calculation_method: sum
+    expression: amount
+    timestamp: transaction_date
+    time_grains: [month]
 
-#     tags:
-#     - piperider
+    tags:
+    - piperider
 
-#   - name: customer_key
-#     label: Total Customers
-#     model: ref('fct_transactions')
-#     description: "Count of total customers"
-#     calculation_method: count
-#     expression: customer_key
-#     timestamp: transaction_date
-#     time_grains: [month]
+  - name: customer_key
+    label: Total Customers
+    model: ref('fct_transactions')
+    description: "Count of total customers"
+    calculation_method: count
+    expression: customer_key
+    timestamp: transaction_date
+    time_grains: [month]
 
-#     tags:
-#     - piperider
+    tags:
+    - piperider
 
-#   - name: merchant_key
-#     label: Total Merchants
-#     model: ref('fct_transactions')
-#     description: "Count of total merchants"
-#     calculation_method: count
-#     expression: merchant_key
-#     timestamp: transaction_date
-#     time_grains: [month]
+  - name: merchant_key
+    label: Total Merchants
+    model: ref('fct_transactions')
+    description: "Count of total merchants"
+    calculation_method: count
+    expression: merchant_key
+    timestamp: transaction_date
+    time_grains: [month]
 
-#     tags:
-#     - piperider
+    tags:
+    - piperider
 
