@@ -4,9 +4,9 @@ WITH customer_demographics AS (
     age_band, 
     salary_band, 
     postcode,
-    LSOA,
-    MSOA,
-    derived_gender
+    -- LSOA,
+    -- MSOA,
+    derived_gender AS gender
   FROM {{ source('raw', 'dc_transactions') }} 
 )
 
