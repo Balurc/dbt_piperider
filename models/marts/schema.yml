@@ -33,7 +33,7 @@ metrics:
     label: Total Customers
     model: ref('fct_transactions')
     description: "Count of total customers"
-    calculation_method: count_distinct
+    calculation_method: count
     expression: customer_key
     timestamp: transaction_date
     time_grains: [month]
@@ -45,7 +45,7 @@ metrics:
     label: Total Merchants
     model: ref('fct_transactions')
     description: "Count of total merchants"
-    calculation_method: count_distinct
+    calculation_method: count
     expression: merchant_key
     timestamp: transaction_date
     time_grains: [month]
