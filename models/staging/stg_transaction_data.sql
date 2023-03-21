@@ -6,7 +6,7 @@ WITH transaction_data AS (
     account_reference AS account_id,
     merchant_name, 
     merchant_business_line,
-    amount::float as amount
+    amount::integer as amount
   FROM {{ source('raw', 'dc_transactions') }} 
 )
 
