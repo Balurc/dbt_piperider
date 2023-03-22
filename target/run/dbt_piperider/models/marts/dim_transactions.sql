@@ -2,13 +2,13 @@
   
     
 
-        create or replace transient table analytics_credit_debit_transaction.analytics_dev.dim_transactions  as
+        create or replace transient table analytics_credit_debit_transaction.analytics_pr.dim_transactions  as
         (SELECT
     
     
 md5(cast(coalesce(cast(transaction_id as TEXT), '_dbt_utils_surrogate_key_null_') as TEXT)) AS transaction_key,
     *
-FROM analytics_credit_debit_transaction.analytics_dev.stg_transactions
+FROM analytics_credit_debit_transaction.analytics_pr.stg_transactions
         );
       
   

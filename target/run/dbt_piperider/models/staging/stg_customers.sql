@@ -1,5 +1,5 @@
 
-  create or replace   view analytics_credit_debit_transaction.analytics_dev.stg_customers
+  create or replace   view analytics_credit_debit_transaction.analytics_pr.stg_customers
   
    as (
     WITH customer_demographics AS (
@@ -8,8 +8,8 @@
     age_band, 
     salary_band, 
     postcode,
-    LSOA,
-    MSOA,
+    -- LSOA,
+    -- MSOA,
     derived_gender
   FROM raw_transactions.debit_credit_transactions.dc_transactions 
 )

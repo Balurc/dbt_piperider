@@ -1,5 +1,5 @@
 
-  create or replace   view analytics_credit_debit_transaction.analytics_dev.stg_transaction_data
+  create or replace   view analytics_credit_debit_transaction.analytics_pr.stg_transaction_data
   
    as (
     WITH transaction_data AS (
@@ -10,7 +10,7 @@
     account_reference AS account_id,
     merchant_name, 
     merchant_business_line,
-    amount::number AS amount
+    amount::float as amount
   FROM raw_transactions.debit_credit_transactions.dc_transactions 
 )
 

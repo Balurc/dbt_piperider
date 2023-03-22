@@ -1,5 +1,5 @@
 
-  create or replace   view analytics_credit_debit_transaction.analytics_dev.stg_dates
+  create or replace   view analytics_credit_debit_transaction.analytics_pr.stg_dates
   
    as (
     WITH transaction_dates AS (

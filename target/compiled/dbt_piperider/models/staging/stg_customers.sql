@@ -4,8 +4,8 @@ WITH customer_demographics AS (
     age_band, 
     salary_band, 
     postcode,
-    LSOA,
-    MSOA,
+    -- LSOA,
+    -- MSOA,
     derived_gender
   FROM raw_transactions.debit_credit_transactions.dc_transactions 
 )

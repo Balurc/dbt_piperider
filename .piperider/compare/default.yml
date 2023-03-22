@@ -3,14 +3,14 @@ base:
   dbt:
     commands:
     - dbt deps
-    - dbt build --target prod
+    - dbt build
   piperider:
-    command: piperider run --datasource prod --dbt-state target -o /tmp/piperider/prod-report/
+    command: piperider run
 target:
   branch: data-modeling-version01
   dbt:
     commands:
     - dbt deps
-    - dbt build --target pr
+    - dbt build
   piperider:
-    command: piperider run --datasource pr --dbt-state target -o /tmp/piperider/pr-report/
+    command: piperider run
