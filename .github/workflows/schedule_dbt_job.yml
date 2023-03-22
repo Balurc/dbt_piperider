@@ -215,7 +215,7 @@ jobs:
 
       - name: Compare reports
         run: |
-          piperider compare --output /tmp/piperider/comparison-report
+          piperider compare
 
       - name: Create PR comments
         uses: peter-evans/create-or-update-comment@v2.1.0
