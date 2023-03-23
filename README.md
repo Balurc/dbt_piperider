@@ -1,5 +1,5 @@
 # Catch Your Data Quality Issues Early in The PR Review with PipeRider
-This repo was created to accompany the article on <a href="https://github.com/DataTalksClub/data-engineering-zoomcamp/tree/main/week_2_data_ingestion" target="_blank">Catch Your Data Quality Issues Early in The PR Review with PipeRider</a>.
+This repo was created to accompany the article on <a href="https://medium.com/inthepipeline/how-to-catch-common-data-quality-issues-that-haunt-data-engineers-with-piperider-3a7703cd7f18">Catch Your Data Quality Issues Early in The PR Review with PipeRider</a>.
 
 PipeRider allows you to understand how your existing data would change with the new incoming data and code changes in a comparison report. This comparison report can then be attached in the PR comment as part of the CI process.
 
